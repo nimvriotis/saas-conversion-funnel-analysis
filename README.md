@@ -27,7 +27,7 @@ It includes:
 
 The dashboard is designed to support quick identification of bottlenecks and enable data-driven decision-making.
 
-![ Dashboard ](images/dashboard.png)
+![PowerBI Dashboard](images/dashboard_powerbi.png)
 
 ---
 
