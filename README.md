@@ -123,7 +123,7 @@ This structure enables:
 
 A separate measures table is used to organize key KPI calculations.
 
-![Data Model](images/data_model.png)
+
 
 ---
 
