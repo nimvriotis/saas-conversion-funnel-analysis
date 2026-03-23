@@ -1,0 +1,164 @@
+Goal / Use Case
+
+Create a realistic synthetic dataset for a SaaS conversion funnel analysis project.
+The dataset will be used for SQL analysis and a Power BI dashboard.
+
+The objective is to analyze how users progress through a SaaS acquisition funnel, identify drop-off points, calculate conversion rates, and evaluate performance across channels, devices, and countries.
+
+The dataset must reflect realistic user behavior, including partial journeys, non-converting users, and variation across segments.
+
+---
+
+Target Audience
+
+Junior Data Analyst portfolio project intended for recruiters and hiring managers.
+The dataset should simulate a real SaaS business environment and support business-focused analysis.
+
+---
+
+Dataset Structure
+
+Create 3 CSV files:
+
+1. users.csv
+2. events.csv
+3. subscriptions.csv
+
+---
+
+Dataset Size
+
+* users: 20,000 rows
+* events: 100,000+ rows (must exceed users significantly)
+* subscriptions: ~7,000–8,000 rows
+
+---
+
+Key Requirement (VERY IMPORTANT)
+
+The dataset must include **additional visitors who never sign up**, so that:
+
+* Visit > Sign Up
+* Funnel is not artificially perfect
+* Realistic top-of-funnel drop-off exists
+
+---
+
+Schema
+
+Table: users.csv
+
+* user_id (string, unique, format U000001 → U020000)
+* signup_date (date, between 2024-01-01 and 2025-12-31)
+* country (United States, United Kingdom, Germany, France, Spain, Netherlands, Canada, Australia)
+* device_type (Desktop, Mobile, Tablet)
+* acquisition_channel (Organic Search, Paid Search, Facebook Ads, Referral, Direct, Email Campaign)
+* plan_interest (Free, Pro, Family)
+
+---
+
+Table: events.csv
+
+* event_id (string, unique, format E0000001+)
+* user_id (string, includes both registered users and extra visitors)
+* event_datetime (datetime within 2024–2025 range)
+* event_type:
+
+  Visit
+  Sign Up
+  Email Verified
+  Trial Started
+  Onboarding Completed
+  First Key Action
+  Subscription Started
+
+---
+
+Table: subscriptions.csv
+
+* subscription_id (string, unique)
+* user_id (must exist in users table)
+* subscription_start_date (on or after signup_date)
+* plan_tier (Pro, Family)
+* monthly_revenue (realistic SaaS pricing, approx. 12.99–29.99)
+* billing_cycle (Monthly, Annual)
+* is_active (true/false)
+
+---
+
+Funnel Behavior (Realistic Constraints)
+
+* Not all visitors sign up
+* Not all users complete all stages
+
+Approximate progression:
+
+* Visit → Sign Up: ~60–80%
+* Sign Up → Email Verified: ~70–80%
+* Email Verified → Trial Started: ~60–75%
+* Trial Started → Onboarding Completed: ~70–85%
+* Onboarding Completed → First Key Action: ~65–80%
+* First Key Action → Subscription Started: ~40–60%
+
+Final subscription rate should be ~30–40% of users.
+
+---
+
+Behavioral Logic
+
+* Users follow logical event order (Visit → Sign Up → … → Subscription)
+* Some users drop off at each stage
+* Some users skip minor steps but still convert
+* Time delays exist between stages (hours to days)
+* Some users perform multiple visits before signup
+
+---
+
+Segment-Based Variation
+
+* Email Campaign and Referral convert better than Facebook Ads
+* Desktop converts better than Mobile
+* United States and high-intent channels have higher conversion rates
+* Plan interest influences subscription likelihood
+
+---
+
+Data Quality Rules
+
+* All primary keys must be unique
+* subscriptions.user_id must exist in users
+* event sequences must follow logical order
+* subscription dates must be after signup
+* No missing values required
+
+---
+
+PII Policy
+
+All data must be synthetic and non-identifiable.
+No real personal information.
+
+---
+
+Output Format
+
+* CSV files
+* UTF-8 encoding
+* Comma delimiter
+* Date format: YYYY-MM-DD
+* Datetime format: YYYY-MM-DD HH:MM:SS
+
+---
+
+Random Seed
+
+Use seed = 42 for reproducibility
+
+---
+
+Expected Output
+
+* Realistic funnel distribution with meaningful drop-offs
+* Variation across segments
+* Clean relational structure
+* Suitable for SQL analysis and Power BI dashboarding
