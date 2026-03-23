@@ -48,9 +48,11 @@ Understanding these patterns enables teams to optimize user experience, improve 
 ---
 ## Dataset
 
-The dataset was synthetically generated in Python based on a structured prompt designed using a custom GPT within ChatGPT ("Dataset Creator"), with the goal of simulating a realistic SaaS conversion funnel.
+The dataset was designed to simulate a realistic SaaS conversion funnel, including users, events, and subscriptions.
 
-Since direct export from the GPT was not possible, a custom Python script was used to generate the data locally. This approach allowed full control over the dataset structure, table relationships, and user behavior logic, ensuring consistency with a real-world funnel scenario.
+A structured prompt was created using a custom GPT within ChatGPT ("Dataset Creator") to define the dataset schema, relationships, and expected user behavior.
+
+Since the dataset could not be directly exported, a custom Python script was implemented to generate the data locally based on this design. This ensured full control over the structure, consistency, and logical flow of the data.
 
 ### Structure
 
