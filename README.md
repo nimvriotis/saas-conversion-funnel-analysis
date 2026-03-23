@@ -251,7 +251,7 @@ Key analyses included:
 ## Skills Demonstrated
 
 ### Technical
-- SQL (joins, aggregations, window functions)  
+- SQL (joins, aggregations, window functions, CTEs)  
 - Power BI (data modeling, DAX, dashboards)  
 - Python (data simulation)  
 
