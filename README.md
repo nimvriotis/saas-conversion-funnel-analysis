@@ -46,12 +46,11 @@ This project aims to identify:
 Understanding these patterns enables teams to optimize user experience, improve onboarding, and make better decisions on marketing investment.
 
 ---
-
 ## Dataset
 
 The dataset was programmatically generated in Python using a structured prompt designed with ChatGPT, in order to simulate a realistic SaaS conversion funnel.
 
-An initial dataset version produced unrealistic results (e.g. identical Visit and Sign Up counts), so a custom Python-based generation approach was implemented to ensure meaningful drop-offs and more realistic user behavior.
+Since the dataset could not be directly exported, a custom Python script was used to generate the data locally, ensuring full control over structure, relationships, and realistic user behavior.
 
 ### Structure
 
@@ -105,8 +104,10 @@ The dataset simulates realistic SaaS dynamics:
 
 - Fully synthetic dataset (no real user data)  
 - Designed specifically for analytics and portfolio use  
-- The dataset generation script is included in the project files  
-- The dataset design prompt is included as `dataset_prompt.txt`  
+- The dataset generation script is included in the project files:  
+  📄 [generate_saas_dataset.py](python/generate_saas_dataset.py)  
+- The dataset design prompt is included in the project files:  
+  📄 [dataset_prompt.txt](docs/dataset_prompt.txt)   
 
 ---
 
@@ -144,18 +145,31 @@ The project combines Python, SQL, and Power BI.
 
 ### SQL (Analysis)
 
-Performed exploratory and analytical queries including:
+SQL was used to explore user behavior across the funnel, calculate conversion metrics, and validate data consistency.
 
-- Funnel stage distribution  
-- Conversion rates between stages using window functions (LAG)  
-- Drop-off analysis using LEAD  
-- Conversion by channel, device, and country  
-- Revenue analysis by plan and billing cycle  
-- Data quality validation  
+Key analyses included:
 
-![SQL Conversion](images/sql_conversion.png)
+- **Funnel stage distribution**  
+  Measured how many users reach each stage of the funnel using `COUNT(DISTINCT user_id)`
 
-![SQL Drop-off](images/sql_dropoff.png)
+- **Conversion rates between stages (LAG)**  
+  Used window functions (`LAG`) to compare each stage with the previous one and calculate step-by-step conversion rates  
+
+  ![SQL Conversion](images/sql_conversion.png)
+
+- **Drop-off analysis between stages (LEAD)**  
+  Used window functions (`LEAD`) to identify how many users drop between stages and calculate drop-off rates  
+
+  ![SQL Drop-off](images/sql_dropoff.png)
+
+- **Conversion by acquisition channel, device, and country**  
+  Compared how different segments perform in terms of converting users into subscribers  
+
+- **Revenue analysis by plan and billing cycle**  
+  Evaluated how subscription plans and billing frequency impact total revenue  
+
+- **Data quality validation**  
+  Ensured logical consistency across tables (e.g. subscription dates occur after signup)
 
 ### Power BI (Visualization)
 
@@ -216,21 +230,21 @@ Performed exploratory and analytical queries including:
 ## Limitations
 
 - Synthetic dataset, not real-world data  
-- Simplified revenue model (no churn or LTV)  
-- No time-based trend or cohort analysis  
-- External business factors not included  
-- User behavior modeled with controlled probabilities  
-- Power BI dashboard is provided as a `.pbix` file only, since the free version of Power BI does not support publishing or sharing dashboards online  
+- Revenue is simplified and does not include subscription cancellations or long-term customer value  
+- No time-based or cohort analysis  
+- External business factors (e.g. pricing changes, campaigns) are not included  
+- User behavior is simulated using predefined probabilities  
+- The Power BI dashboard is provided as a `.pbix` file only, since the free version does not support online sharing  
 
 ---
 
 ## Next Steps
 
-- Cohort and retention analysis  
-- Time-to-conversion analysis  
-- Churn and lifetime value modeling  
-- Behavioral segmentation  
-- A/B testing simulations  
+- Analyze user behavior over time (cohort analysis)  
+- Measure time between funnel steps  
+- Improve revenue analysis (include cancellations and long-term value)  
+- Segment users based on behavior  
+- Test improvements using A/B simulations  
 
 ---
 
